@@ -1,5 +1,5 @@
-import resumeModel from "../src/models/resumeModel";
-import { generateResumeAI } from "../services/groqService";
+import resumeModel from "../src/models/resumeModel.js";
+import { generateResumeAI } from "../services/groqService.js";
 
 export const generateResume = async (req,res) => {
     try{
