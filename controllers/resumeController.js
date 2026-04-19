@@ -1,4 +1,5 @@
 import resumeModel from "../src/models/resumeModel";
+import { generateResumeAI } from "../services/groqService";
 
 export const generateResume = async (req,res) => {
     try{
@@ -11,9 +12,29 @@ export const generateResume = async (req,res) => {
         message: "All fields are required",
       });
     }
+
+    const generateResume = await generateResumeAI(req.body);
+
+    const resume = await resumeModel.create({
+      name,
+      education,
+      experience,
+      skills,
+      projects,
+      generatedResume,
+    })
+     res.json({
+      success: true,
+      resume,
+    });
     }
-    catch(err){
-        console.error("controller error", err);
-    }
+    catch (error) {
+    console.error("CONTROLLER ERROR:", error.message);
+
+    res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
 
 }
