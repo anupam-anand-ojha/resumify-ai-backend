@@ -1,6 +1,6 @@
-import express from 'express'
-import resumeRoutes from './routes/resumeRoutes.js'
-import cors from 'cors'
+import express from 'express';
+import resumeRoutes from './routes/resumeRoutes.js';
+import cors from 'cors';
 
 const app = express()
 app.use(cors({
@@ -9,7 +9,7 @@ app.use(cors({
    'getresumify.vercel.app'
   ],
   credentials: true
-}))
+}));
 
 
 app.use(express.json());
