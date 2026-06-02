@@ -3,7 +3,7 @@ import { generateResumeAI } from "../services/groqService.js";
 
 export const generateResume = async (req,res) => {
     try{
-        const {ame, education, experience, skills, projects} = req.body;
+        const {name, education, experience, skills, projects} = req.body;
 
 
         if (!name || !education || !experience || !skills || !projects) {
@@ -13,7 +13,7 @@ export const generateResume = async (req,res) => {
       });
     }
 
-    const generateResume = await generateResumeAI(req.body);
+    const generatedResume = await generateResumeAI(req.body);
 
     const resume = await resumeModel.create({
       name,
@@ -25,7 +25,7 @@ export const generateResume = async (req,res) => {
     })
      res.json({
       success: true,
-      resume,
+      resume: generatedResume
     });
     }
     catch (error) {

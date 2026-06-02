@@ -1,28 +1,41 @@
 import Groq from "groq-sdk";
 
-export const generateResumeAI = async (data)=> {
- const{
+const groq = new Groq({
+  apiKey: process.env.GROQ_API_KEY,
+});
+
+export const generateResumeAI = async (data) => {
+  const {
     name = "",
     education = "",
     experience = "",
     skills = "",
-    projects = ""
-} = data;
+    projects = "",
+  } = data;
 
-const prompt = `Create a professional ATS-friendly resume.
+  const prompt = `
+Create a professional ATS-friendly resume.
+
 Name: ${name}
 Education: ${education}
 Experience: ${experience}
 Skills: ${skills}
-Projects: ${projects}`;
+Projects: ${projects}
+`;
 
-const response = await Groq.Chat.Completions.create({
+  const response = await groq.chat.completions.create({
     model: "llama-3.1-8b-instant",
-    message:[
-        {role: "system", content: "You are a professional resume writer."},
-        {roel: "user", content: "prompt" },
+    messages: [
+      {
+        role: "system",
+        content: "You are a professional resume writer.",
+      },
+      {
+        role: "user",
+        content: prompt,
+      },
     ],
-});
- 
+  });
+
   return response.choices[0].message.content;
-}
+};
