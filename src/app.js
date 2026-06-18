@@ -4,10 +4,10 @@ import cors from 'cors';
 
 const app = express()
 app.use(cors({
-  origin:[
-   'http://localhost:5173',
-   'http://getresumify.vercel.app',
-   'https://resumify-rj09ly9no-anupam-anand-ojhas-projects-0dac4885.vercel.app,'
+  origin: [
+    'http://localhost:5173',
+    'https://getresumify.vercel.app',
+    'https://resumify-rj09ly9no-anupam-anand-ojhas-projects-0dac4885.vercel.app'
   ],
   credentials: true
 }));
