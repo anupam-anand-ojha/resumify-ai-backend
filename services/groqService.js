@@ -14,7 +14,10 @@ export const generateResumeAI = async (data) => {
   } = data;
 
   const prompt = `
-Create a professional ATS-friendly resume.
+Create a professional formatting ATS-friendly resume.
+
+Sections:
+ Name, Summary, Education, Experience, Skills, Projects,
 
 Name: ${name}
 Education: ${education}
